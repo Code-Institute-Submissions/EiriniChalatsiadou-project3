@@ -14,5 +14,21 @@ SHEET = GSPREAD_CLIENT.open("nba_stats_2022")
 
 player_total_stats = SHEET.worksheet("Player_Totals")
 
+
+def get_user_name():
+    """
+    Thgis isdfdsfdsf
+    """
+    print('Welcome to nba .... \n')
+    print('This is a great application ....\n')
+    name_str = input("Please enter your name: ")
+    print(f"Wow! This is a nice name! Welcome {name_str.upper()}!!!!!\n")
+
+
 data = player_total_stats.get_all_values()
-print(data)
+get_user_name()
+# print(data)
+
+
+
+  
