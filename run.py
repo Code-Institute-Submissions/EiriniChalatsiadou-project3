@@ -120,11 +120,11 @@ def remove_unused_columns(full_data, column_indexes_to_be_removed):
 
 def calculate_data_stat_column_number(filtered_data, stat_option_number, stat_options):
     """
-    Take data headings and find the column number of given option based on option number.
+    Take data headers and find the column number of given option based on option number.
     """
     option_name = stat_options[stat_option_number]
-    headings = filtered_data[0]
-    column_number = headings.index(option_name)
+    headers = filtered_data[0]
+    column_number = headers.index(option_name)
     return column_number
 
 
@@ -137,14 +137,24 @@ def sort_list_by_stat_option(
     Sort list by stat option and return only given number 
     of players from top/bottom. 
     """
-    heading = filtered_data[0]
+    headers = filtered_data[0]
     del filtered_data[0]
     data_sorted_by_stat = sorted(filtered_data,
                                  key=itemgetter(column_number),
                                  reverse=from_top)
+    filtered_data.insert(0, headers)
     result = data_sorted_by_stat[0:number_of_players]
-    result.insert(0, heading)
+    result.insert(0, headers)
     return result
+
+
+def pretty_print(list):
+    """
+    Formats and prints a list in rows / columns.
+    """
+    df = pd.DataFrame(list)
+    print(tabulate(df, headers='keys', tablefmt='psql'))
+
 
 stat_options = {1: "PTS", 2: "STL", 3: "BLK",
                 4: "TRB", 5: "FT%", 6: "2P%", 7: "3P%"}
@@ -174,10 +184,8 @@ data = player_total_stats.get_all_values()
 
 unused_columns = get_stat_columns_to_be_removed(data, stat_options)
 filtered_data = remove_unused_columns(data, unused_columns)
-
 n = calculate_data_stat_column_number(filtered_data, 4, stat_options)
-r = sort_list_by_stat_option( filtered_data, n, True, 10)
 
-
-cli = cmd.Cmd()
-cli.columnize(r, displaywidth=80)
+r = sort_list_by_stat_option(filtered_data, n, True, 10)
+print(n, filtered_data[0])
+pretty_print(r)
