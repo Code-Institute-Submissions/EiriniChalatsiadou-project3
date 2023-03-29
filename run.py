@@ -1,7 +1,11 @@
-import gspread
+from operator import itemgetter
 import os
-from numpy import delete 
+import gspread
+from numpy import delete
 from google.oauth2.service_account import Credentials
+import pandas as pd
+from tabulate import tabulate
+
 # Here is the scope
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -113,10 +117,37 @@ def remove_unused_columns(full_data, column_indexes_to_be_removed):
 
     return full_data
 
+
+def calculate_data_stat_column_number(filtered_data, stat_option_number, stat_options):
+    """
+    Take data headings and find the column number of given option based on option number.
+    """
+    option_name = stat_options[stat_option_number]
+    headings = filtered_data[0]
+    column_number = headings.index(option_name)
+    return column_number
+
+
+def sort_list_by_stat_option(
+        filtered_data,
+        column_number,
+        from_top,
+        number_of_players):
+    """
+    Sort list by stat option and return only given number 
+    of players from top/bottom. 
+    """
+    heading = filtered_data[0]
+    del filtered_data[0]
+    data_sorted_by_stat = sorted(filtered_data,
+                                 key=itemgetter(column_number),
+                                 reverse=from_top)
+    result = data_sorted_by_stat[0:number_of_players]
+    result.insert(0, heading)
+    return result
+
 stat_options = {1: "PTS", 2: "STL", 3: "BLK",
                 4: "TRB", 5: "FT%", 6: "2P%", 7: "3P%"}
-
-
 
 # print_introduction()
 # while True:
@@ -142,7 +173,11 @@ stat_options = {1: "PTS", 2: "STL", 3: "BLK",
 data = player_total_stats.get_all_values()
 
 unused_columns = get_stat_columns_to_be_removed(data, stat_options)
-interesting_data = remove_unused_columns(data, unused_columns)
-print(interesting_data)
+filtered_data = remove_unused_columns(data, unused_columns)
 
-print(data[0])
+n = calculate_data_stat_column_number(filtered_data, 4, stat_options)
+r = sort_list_by_stat_option( filtered_data, n, True, 10)
+
+
+cli = cmd.Cmd()
+cli.columnize(r, displaywidth=80)
