@@ -22,21 +22,14 @@ def clear_screen():
     """
     os.system('clear')
 
-# Here is the function for the username
-
 
 def get_user_name():
     """
     This is the function that gets the name from the user
     """
-    print('Welcome!\n')
-    print('Do you like NBA? Explore the stats for season 2021-22\n')
     name_str = input("Please enter your name: ")
-    clear_screen()
-    print(f"Wow! This is a great name! Welcome {name_str.upper()}!!!!!\n")
+    return name_str
 
-
-# Function with players stats
 
 def get_player_stat_option():
     """
@@ -56,7 +49,18 @@ def get_player_stat_option():
     return data_option
 
 
-# validate_username(username)
+def validate_username(username):
+    """
+    If the username is empty raise ValueError
+    """
+    try:
+        if username == "":
+            raise ValueError()
+    except ValueError:
+        return False
+  
+    return True
+
 
 def validate_player_stat_option(option):
     """
@@ -71,11 +75,35 @@ def validate_player_stat_option(option):
     except ValueError:
         print(
             "Invalid data. Please input a correct option integer [1-8]\n")
+        return False
+ 
+    return True 
 
 
-get_user_name()
-player_stat = get_player_stat_option()
-validate_player_stat_option(player_stat)
+def print_introduction():
+    """
+    Prints the program introduction.
+    """
+    print('Welcome!\n')
+    print('Do you like NBA? Explore the stats for season 2021-22\n')
+
+
+print_introduction()
+while True:
+    username = get_user_name()
+    if validate_username(username):
+        clear_screen()
+        print(f"Wow! This is a great name! Welcome {username.upper()}!!!!!\n")
+        break
+    else:
+        clear_screen()
+        print("Invalid data. Please input a valid name\n")
+
+
+
+
+# player_stat = get_player_stat_option()
+# validate_player_stat_option(player_stat)
 
 # data = player_total_stats.get_all_values()
 # print(data)
