@@ -45,7 +45,6 @@ def get_player_stat_option():
     print('7) 3PT%\n')
     print('8) Quit\n')
     data_option = input('Please, enter your option (a number 1-8): ')
-    print(f"The data option provided is {data_option}\n")
     return data_option
 
 
@@ -58,7 +57,7 @@ def validate_username(username):
             raise ValueError()
     except ValueError:
         return False
-  
+
     return True
 
 
@@ -72,12 +71,13 @@ def validate_player_stat_option(option):
         player_int_option = int(option)
         if (player_int_option < 1 or player_int_option > 8):
             raise ValueError()
+        if player_int_option == 8:
+            print("Thank you for using our program! Bye!!")
+            exit()
     except ValueError:
-        print(
-            "Invalid data. Please input a correct option integer [1-8]\n")
         return False
- 
-    return True 
+
+    return True
 
 
 def print_introduction():
@@ -87,6 +87,9 @@ def print_introduction():
     print('Welcome!\n')
     print('Do you like NBA? Explore the stats for season 2021-22\n')
 
+
+stat_options = {1: "PTS", 2: "STL", 3: "BLK",
+                4: "TRB", 5: "FT%", 6: "2P%", 7: "3P%"}
 
 print_introduction()
 while True:
@@ -100,10 +103,14 @@ while True:
         print("Invalid data. Please input a valid name\n")
 
 
+while True:
+    player_stat = get_player_stat_option()
+    if validate_player_stat_option(player_stat):
+        break
+    else:
+        clear_screen()
+        print("Invalid data. Please input a correct option integer [1-8]\n")
 
-
-# player_stat = get_player_stat_option()
-# validate_player_stat_option(player_stat)
 
 # data = player_total_stats.get_all_values()
 # print(data)
