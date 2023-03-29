@@ -1,5 +1,6 @@
 import gspread
 import os
+from numpy import delete 
 from google.oauth2.service_account import Credentials
 # Here is the scope
 SCOPE = [
@@ -96,20 +97,25 @@ def get_stat_columns_to_be_removed(full_data, stat_options):
     headers = full_data[0]
     stat_options['Player'] = 'Player'
     desired_stats = stat_options.values()
-    
+
     column_positions_to_be_removed = [
         i for i, item in enumerate(headers) if item not in desired_stats]
 
     return column_positions_to_be_removed
 
 
+def remove_unused_columns(full_data, column_indexes_to_be_removed):
+    """
+    Removes from full stat data columns that we dont really need.
+    """
+    for ind, row in enumerate(full_data):
+        full_data[ind] = delete(row, column_indexes_to_be_removed).tolist()
 
+    return full_data
 
 stat_options = {1: "PTS", 2: "STL", 3: "BLK",
                 4: "TRB", 5: "FT%", 6: "2P%", 7: "3P%"}
 
-
-# def remove_unused_columns(full_data, stat_options ):
 
 
 # print_introduction()
@@ -135,6 +141,8 @@ stat_options = {1: "PTS", 2: "STL", 3: "BLK",
 
 data = player_total_stats.get_all_values()
 
-get_stat_columns_to_be_removed(data, stat_options)
+unused_columns = get_stat_columns_to_be_removed(data, stat_options)
+interesting_data = remove_unused_columns(data, unused_columns)
+print(interesting_data)
 
 print(data[0])
