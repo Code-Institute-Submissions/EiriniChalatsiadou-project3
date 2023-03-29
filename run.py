@@ -88,29 +88,53 @@ def print_introduction():
     print('Do you like NBA? Explore the stats for season 2021-22\n')
 
 
+def get_stat_columns_to_be_removed(full_data, stat_options):
+    """
+    From all the data, return the indexes of the columns that we want to 
+    remove - column names not in stat options plus Player column
+    """
+    headers = full_data[0]
+    stat_options['Player'] = 'Player'
+    desired_stats = stat_options.values()
+    
+    column_positions_to_be_removed = [
+        i for i, item in enumerate(headers) if item not in desired_stats]
+
+    return column_positions_to_be_removed
+
+
+
+
 stat_options = {1: "PTS", 2: "STL", 3: "BLK",
                 4: "TRB", 5: "FT%", 6: "2P%", 7: "3P%"}
 
-print_introduction()
-while True:
-    username = get_user_name()
-    if validate_username(username):
-        clear_screen()
-        print(f"Wow! This is a great name! Welcome {username.upper()}!!!!!\n")
-        break
-    else:
-        clear_screen()
-        print("Invalid data. Please input a valid name\n")
+
+# def remove_unused_columns(full_data, stat_options ):
 
 
-while True:
-    player_stat = get_player_stat_option()
-    if validate_player_stat_option(player_stat):
-        break
-    else:
-        clear_screen()
-        print("Invalid data. Please input a correct option integer [1-8]\n")
+# print_introduction()
+# while True:
+#     username = get_user_name()
+#     if validate_username(username):
+#         clear_screen()
+#         print(f"Wow! This is a great name! Welcome {username.upper()}!!!!!\n")
+#         break
+#     else:
+#         clear_screen()
+#         print("Invalid data. Please input a valid name\n")
 
 
-# data = player_total_stats.get_all_values()
-# print(data)
+# while True:
+#     player_stat = get_player_stat_option()
+#     if validate_player_stat_option(player_stat):
+#         break
+#     else:
+#         clear_screen()
+#         print("Invalid data. Please input a correct option integer [1-8]\n")
+
+
+data = player_total_stats.get_all_values()
+
+get_stat_columns_to_be_removed(data, stat_options)
+
+print(data[0])
