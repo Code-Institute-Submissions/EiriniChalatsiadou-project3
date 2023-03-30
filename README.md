@@ -6,23 +6,28 @@
   Also the user have the choice to quit the program.
 
 - ### **TECHNOLOGIES**
+  - [Git] (https://git-scm.com/) for version control.
+  - [Gitpod] (https://www.gitpod.io/) online IDE.
+  - [GitHub] (https://github.com/) for host repository.
 
   ### **Languages Used**
-  This tool is created using Python language.
+  This tool is created using [Python](https://en.wikipedia.org/wiki/Python_programming_language)
+ language.
 
   ### **Libraries Used**
-  - Git - For version control These commands were used for version control during project:
-  - git add . - To add files before committing
-  - git commit -m "type your message mentioning changes" - To commit changes to the local repository
-  - git push - To push all committed changes to the GitHub repository
-  - GitHub - To create my repositories, save and store my project files.
-  - gspread is a Python API for Google Sheets and requires Python 3+. It allows user to open, read, write, share spreadsheets. Additionally it enables user to select, create, delete worksheets and to format cell ranges.
-  - google auth.- This library provides the ability to authenticate to Google APIs using various methods. It also provides integration with several HTTP libraries.
-  - pprint — Data pretty printer — Python 2.7, 3.5 onwards. The pprint module provides “pretty-print” to Python data structures. The formatted representation arranges objects on a single line if it can, and breaks them onto multiple lines if they don’t fit within the allowed width. I used it in order to visualize the lists in more user friendly style.
+  - Git: For version control These commands were used for version control during project:
+  - git add . or git add -A: To add files before committing
+  - git commit -m: "type your message mentioning changes" - To commit changes to the local repository
+  - git push : To push all committed changes to the GitHub repository
+  - GitHub : To create my repositories, save and store my project files.
+  - gspread:  is a Python API for Google Sheets and requires Python 3+. It allows user to open, read, write, share spreadsheets. Additionally it enables user to select, create, delete worksheets and to format cell ranges.
+  - google auth.: This library provides the ability to authenticate to Google APIs using various methods. It also provides integration with several HTTP libraries.
+  - pprint : Data pretty printer — Python 2.7, 3.5 onwards. The pprint module provides “pretty-print” to Python data structures. The formatted representation arranges objects on a single line if it can, and breaks them onto multiple lines if they don’t fit within the allowed width. I used it in order to visualize the lists in more user friendly style.
   - numPy provides:
     -  An array object of arbitrary homogeneous items
     - Fast mathematical operations over arrays
     - Linear Algebra, Fourier Transforms, Random Number Generation 
+    - OS : for the clear terminal function.
      
  - ### **DATA**
    I used the data for my program from [NBA_2021-22_totals](https://www.basketball-reference.com/leagues/NBA_2022_totals.html)
