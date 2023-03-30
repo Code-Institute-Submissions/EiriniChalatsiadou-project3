@@ -51,7 +51,7 @@ def get_player_stat_option():
     print('0) Quit\n')
     data_option = input('Please, enter your option (a number 0-7): ')
     return data_option
-    
+
 
 def get_top_bottom_players_option(stat):
     """
@@ -268,8 +268,9 @@ data = player_total_stats.get_all_values()
 unused_columns = get_stat_columns_to_be_removed(data, stat_options)
 filtered_data = remove_unused_columns(data, unused_columns)
 filtered_data = convert_list_data_from_string_to_numbers(filtered_data)
-n = calculate_data_stat_column_number(filtered_data, 5, stat_options)
+n = calculate_data_stat_column_number(filtered_data, player_stat, stat_options)
 
-r = sort_list_by_stat_option(filtered_data, n, True, 10)
+from_top = top_bottom_option == "1"
+r = sort_list_by_stat_option(filtered_data, n, from_top, 10)
 print(n, filtered_data[0])
 pretty_print(r)
