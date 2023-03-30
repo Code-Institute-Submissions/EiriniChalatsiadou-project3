@@ -96,10 +96,11 @@ def print_introduction():
 def get_stat_columns_to_be_removed(full_data, stat_options):
     """
     From all the data, return the indexes of the columns that we want to 
-    remove - column names not in stat options plus Player column
+    remove - column names not in stat options plus Player and Pos columns
     """
     headers = full_data[0]
     stat_options['Player'] = 'Player'
+    stat_options['Pos'] = 'Pos'
     desired_stats = stat_options.values()
 
     column_positions_to_be_removed = [
@@ -118,9 +119,13 @@ def remove_unused_columns(full_data, column_indexes_to_be_removed):
     return full_data
 
 
-def calculate_data_stat_column_number(filtered_data, stat_option_number, stat_options):
+def calculate_data_stat_column_number(
+        filtered_data,
+        stat_option_number,
+        stat_options):
     """
-    Take data headers and find the column number of given option based on option number.
+    Take data headers and find the column number of given 
+    option based on option number.
     """
     option_name = stat_options[stat_option_number]
     headers = filtered_data[0]
@@ -146,6 +151,41 @@ def sort_list_by_stat_option(
     result = data_sorted_by_stat[0:number_of_players]
     result.insert(0, headers)
     return result
+
+
+def convert_string_to_float_or_integer(str):
+    """
+    Converts str to either integer or float if it can be converted.
+    Else returns string.
+    """
+    try:
+        integer_number = int(str)
+        return integer_number
+    except ValueError:
+        pass
+
+    try:
+        float_number = float(str)
+        return float_number
+    except ValueError:
+        pass
+
+    return str
+
+
+def convert_list_data_from_string_to_numbers(data_list):
+    """
+    data_list is a list of lists. Excluding the first row which is header
+    convert the rest rows from string to either integer or float
+    depending the data
+    """
+    for ind, row in enumerate(data_list):
+        if ind != 0:
+            # expression for item in iterable if condition == True
+            data_list[ind] = [
+                convert_string_to_float_or_integer(item) for item in row]
+
+    return data_list
 
 
 def pretty_print(list):
@@ -184,6 +224,7 @@ data = player_total_stats.get_all_values()
 
 unused_columns = get_stat_columns_to_be_removed(data, stat_options)
 filtered_data = remove_unused_columns(data, unused_columns)
+filtered_data = convert_list_data_from_string_to_numbers(filtered_data)
 n = calculate_data_stat_column_number(filtered_data, 4, stat_options)
 
 r = sort_list_by_stat_option(filtered_data, n, True, 10)
