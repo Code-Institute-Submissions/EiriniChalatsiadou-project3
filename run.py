@@ -5,6 +5,7 @@ from numpy import delete
 from google.oauth2.service_account import Credentials
 import pandas as pd
 from tabulate import tabulate
+from prettytable import PrettyTable
 from user_input import get_number_of_players, get_player_stat_option, \
     get_top_bottom_players_option, get_user_name, get_user_wants_to_continue, \
     clear_screen
@@ -136,9 +137,12 @@ def pretty_print(list):
     """
     Formats and prints a list in rows / columns.
     """
-    df = pd.DataFrame(list)
-    print(tabulate(df, headers='firstrow', tablefmt='psql'))
-
+    x = PrettyTable()
+    x.field_names = list[0]
+    x.add_rows(list[1:])
+    # df = pd.DataFrame(list)
+    # print(tabulate(df, headers='firstrow', tablefmt='psql'))
+    print(x)
 
 def main():
     """
