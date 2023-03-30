@@ -158,4 +158,4 @@ def get_number_of_players(stat):
             clear_screen()
             print(
                 "Invalid data. " +
-                "Please input a correct option integer [0-200]\n")
+                "Please input a correct option integer [0-200]\n"1)

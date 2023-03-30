@@ -138,6 +138,9 @@ def pretty_print(list):
 
 
 def main():
+    """ 
+    Here is the main function
+    """
     print_introduction()
     get_user_name()
     player_stat = get_player_stat_option()
