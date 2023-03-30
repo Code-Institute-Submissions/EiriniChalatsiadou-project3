@@ -82,6 +82,22 @@ def validate_number_of_players(option_string):
     return True
 
 
+def validate_user_wants_to_continue(user_input):
+    """
+    Validate the input if the user wants to continue using our
+    program or not
+    """
+    try:
+        if user_input == "n":
+            print("Thank you for using our program! Bye!!")
+            exit()
+        if user_input != "y":
+            raise ValueError()
+    except ValueError:
+        return False
+    return True
+
+
 def get_user_name():
     """
     This is the function that gets the name from the user
@@ -158,3 +174,15 @@ def get_number_of_players(stat, from_top):
         clear_screen()
         print("Invalid data. " +
               "Please input a correct option integer [0-200]\n")
+
+
+def get_user_wants_to_continue():
+    """
+    this function asks the user if he wants to continue and ask more info. 
+    """
+    while True:
+        user_input = input('Do you want to know more? [y/n]: ')
+        if validate_user_wants_to_continue(user_input):
+            return True
+        clear_screen()
+        print("Invalid data. Please input [ 'y' or 'n'] \n")

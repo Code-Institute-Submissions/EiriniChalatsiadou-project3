@@ -6,7 +6,7 @@ from google.oauth2.service_account import Credentials
 import pandas as pd
 from tabulate import tabulate
 from user_input import get_number_of_players, get_player_stat_option, \
-    get_top_bottom_players_option, get_user_name
+    get_top_bottom_players_option, get_user_name, get_user_wants_to_continue, clear_screen
 
 # Here is the scope
 SCOPE = [
@@ -145,22 +145,23 @@ def main():
     """
     print_introduction()
     get_user_name()
-    player_stat = get_player_stat_option()
-    stat_str = stat_options[player_stat]
-    top_bottom_option = get_top_bottom_players_option(stat_str)
-    from_top = top_bottom_option == "1"
-    player_number_option = get_number_of_players(stat_str, from_top)
+    while True:
+        player_stat = get_player_stat_option()
+        stat_str = stat_options[player_stat]
+        top_bottom_option = get_top_bottom_players_option(stat_str)
+        from_top = top_bottom_option == "1"
+        player_number_option = get_number_of_players(stat_str, from_top)
 
-    data = player_total_stats.get_all_values()
-    filtered_data = remove_unused_columns(data)
-    filtered_data = convert_list_data_from_string_to_numbers(filtered_data)
-    n = calculate_data_stat_column_number(filtered_data, player_stat)
-
-
-    r = sort_list_by_stat_option(
-        filtered_data, n, from_top, int(player_number_option))
-    print(n, filtered_data[0])
-    pretty_print(r)
+        data = player_total_stats.get_all_values()
+        filtered_data = remove_unused_columns(data)
+        filtered_data = convert_list_data_from_string_to_numbers(filtered_data)
+        col_num = calculate_data_stat_column_number(filtered_data, player_stat)
+        result = sort_list_by_stat_option(
+            filtered_data, col_num, from_top, int(player_number_option))
+        print(col_num, filtered_data[0])
+        pretty_print(result)
+        get_user_wants_to_continue()
+        clear_screen()
 
 
 main()
