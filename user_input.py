@@ -1,3 +1,7 @@
+"""
+Module user_input provides functionality regarding user input and
+user validation.
+"""
 import os
 
 
@@ -87,75 +91,70 @@ def get_user_name():
         if validate_username(username):
             clear_screen()
             print(
-                f"Wow! This is a great name! Welcome {username.upper()}!!!!!\n")
+                "Wow! This is a great name! " +
+                f"Welcome {username.upper()}!!!!!\n")
             return username
-        else:
-            clear_screen()
-            print("Invalid data. Please input a valid name\n")
+        clear_screen()
+        print("Invalid data. Please input a valid name\n")
 
 
 def get_player_stat_option():
     """
     This is the function with the players stats options
     """
-    print('What do you want to know about? Please, choose an option 0-7')
-    print('1) Points\n')
-    print('2) Steals\n')
-    print('3) Blocks\n')
-    print('4) Rebounds\n')
-    print('5) FT%\n')
-    print('6) 2PT%\n')
-    print('7) 3PT%\n')
-    print('0) Quit\n')
     while True:
+        print('What do you want to know about? Please, choose an option 0-7')
+        print('1) Points\n')
+        print('2) Steals\n')
+        print('3) Blocks\n')
+        print('4) Rebounds\n')
+        print('5) FT%\n')
+        print('6) 2PT%\n')
+        print('7) 3PT%\n')
+        print('0) Quit\n')
         player_stat = input('Please, enter your option (a number 0-7): ')
         if validate_player_stat_option(player_stat):
-            return player_stat
-        else:
             clear_screen()
-            print(
-                "Invalid data. Please input a correct option integer [1-8]\n")
+            return player_stat
+        clear_screen()
+        print("Invalid data. Please input a correct option integer [1-8]\n")
 
 
 def get_top_bottom_players_option(stat):
     """
     This is the function that you can choose between top or bottom players
     """
-    print(
-        f'Regarding {stat}, do you want players from TOP or BOTTOM? ' +
-        "Please, choose an option 0-2"
-    )
-    print('1) Top (best players)\n')
-    print('2) Bottom (least best players)\n')
-    print('0) Quit\n')
     while True:
+        print(
+            f'Regarding {stat}, do you want players from TOP or BOTTOM?')
+        print('1) Top (best players)\n')
+        print('2) Bottom (least best players)\n')
+        print('0) Quit\n')
         top_bottom_option = input('Please, enter your option (a number 0-2): ')
         if validate_top_bottom_option(top_bottom_option):
-            return top_bottom_option
-        else:
             clear_screen()
-            print(
-                "Invalid data. Please input a correct option integer [0-2]\n")
+            return top_bottom_option
+
+        clear_screen()
+        print("Invalid data. Please input a correct option integer [0-2]\n")
 
 
-def get_number_of_players(stat):
+def get_number_of_players(stat, from_top):
     """
     This is the function that will get number of players from user
     """
-    print(
-        'Please provide a number N. ' +
-        'This number will show the Nth best/least best players ' +
-        f'regarding {stat}.\n'
-    )
-
+    best_str = "" if from_top else "least "
     while True:
+        print(
+            'Please provide a number N. ' +
+            f'This number will show the Nth {best_str}best players ' +
+            f'regarding {stat}.\n')
+
         player_number_option = input(
-            'Please, enter a positive integer number ' +
-            'up to 200 or press 0 to Quit: ')
+            'Please, enter a number in range of [1-200] ' +
+            'or press 0 to Quit: ')
         if validate_number_of_players(player_number_option):
             return player_number_option
-        else:
-            clear_screen()
-            print(
-                "Invalid data. " +
-                "Please input a correct option integer [0-200]\n"1)
+        clear_screen()
+        print("Invalid data. " +
+              "Please input a correct option integer [0-200]\n")

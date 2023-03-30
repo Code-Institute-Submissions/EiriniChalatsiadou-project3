@@ -1,10 +1,12 @@
+"""Main module"""
 from operator import itemgetter
 import gspread
 from numpy import delete
 from google.oauth2.service_account import Credentials
 import pandas as pd
 from tabulate import tabulate
-from user_input import get_number_of_players, get_player_stat_option, get_top_bottom_players_option, get_user_name
+from user_input import get_number_of_players, get_player_stat_option, \
+    get_top_bottom_players_option, get_user_name
 
 # Here is the scope
 SCOPE = [
@@ -16,7 +18,7 @@ SCOPE = [
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open("nba_stats_2022")
+SHEET = GSPREAD_CLIENT.open("nba_stats_2021_2022")
 
 player_total_stats = SHEET.worksheet("Player_Totals")
 
@@ -64,7 +66,7 @@ def calculate_data_stat_column_number(
         filtered_data,
         stat_option_number):
     """
-    Take data headers and find the column number of given 
+    Take data headers and find the column number of given
     option based on option number.
     """
     option_name = stat_options[stat_option_number]
@@ -79,8 +81,8 @@ def sort_list_by_stat_option(
         from_top,
         number_of_players):
     """
-    Sort list by stat option and return only given number 
-    of players from top/bottom. 
+    Sort list by stat option and return only given number
+    of players from top/bottom.
     """
     headers = filtered_data[0]
     del filtered_data[0]
@@ -138,7 +140,7 @@ def pretty_print(list):
 
 
 def main():
-    """ 
+    """
     Here is the main function
     """
     print_introduction()
@@ -146,14 +148,15 @@ def main():
     player_stat = get_player_stat_option()
     stat_str = stat_options[player_stat]
     top_bottom_option = get_top_bottom_players_option(stat_str)
-    player_number_option = get_number_of_players(stat_str)
+    from_top = top_bottom_option == "1"
+    player_number_option = get_number_of_players(stat_str, from_top)
 
     data = player_total_stats.get_all_values()
     filtered_data = remove_unused_columns(data)
     filtered_data = convert_list_data_from_string_to_numbers(filtered_data)
     n = calculate_data_stat_column_number(filtered_data, player_stat)
 
-    from_top = top_bottom_option == "1"
+
     r = sort_list_by_stat_option(
         filtered_data, n, from_top, int(player_number_option))
     print(n, filtered_data[0])
