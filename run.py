@@ -4,6 +4,7 @@ import gspread
 from numpy import delete
 from google.oauth2.service_account import Credentials
 from prettytable import PrettyTable
+from colorama import Fore, Style
 from user_input import get_number_of_players, get_player_stat_option, \
     get_top_bottom_players_option, get_user_name, get_user_wants_to_continue, \
     clear_screen
@@ -130,16 +131,22 @@ def convert_list_data_from_string_to_numbers(data_list):
     return data_list
 
 
-def pretty_print(list):
+def pretty_print(list, colour_column_number):
     """
-    Formats and prints a list in rows / columns.
+    Formats and prints a list in rows / columns. 
+    Accepts column number to be coloured
     """
-    x = PrettyTable()
-    x.field_names = list[0]
-    x.add_rows(list[1:])
-    # df = pd.DataFrame(list)
-    # print(tabulate(df, headers='firstrow', tablefmt='psql'))
-    print(x)
+
+    pretty_table = PrettyTable()
+    for ind, row in enumerate(list):
+        number_str = str(row[colour_column_number]) 
+        colored = Fore.GREEN + \
+            number_str + Style.RESET_ALL
+        list[ind][colour_column_number] = colored
+
+    pretty_table.field_names = list[0]
+    pretty_table.add_rows(list[1:])
+    print(pretty_table)
 
 
 def main():
@@ -161,8 +168,7 @@ def main():
         col_num = calculate_data_stat_column_number(filtered_data, player_stat)
         result = sort_list_by_stat_option(
             filtered_data, col_num, from_top, int(player_number_option))
-        print(col_num, filtered_data[0])
-        pretty_print(result)
+        pretty_print(result, col_num)
         get_user_wants_to_continue()
         clear_screen()
 
