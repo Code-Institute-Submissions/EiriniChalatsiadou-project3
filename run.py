@@ -168,6 +168,8 @@ def convert_string_to_float_or_integer(str):
         float_number = float(str)
         return float_number
     except ValueError:
+        if str == "":
+            return 0.0
         pass
 
     return str
@@ -225,7 +227,7 @@ data = player_total_stats.get_all_values()
 unused_columns = get_stat_columns_to_be_removed(data, stat_options)
 filtered_data = remove_unused_columns(data, unused_columns)
 filtered_data = convert_list_data_from_string_to_numbers(filtered_data)
-n = calculate_data_stat_column_number(filtered_data, 4, stat_options)
+n = calculate_data_stat_column_number(filtered_data, 5, stat_options)
 
 r = sort_list_by_stat_option(filtered_data, n, True, 10)
 print(n, filtered_data[0])
