@@ -41,6 +41,11 @@
 
 
  - ### **FLOWCHART**
+   The flow chart was created using https://app.diagrams.net, a web-based diagramming application. The flow charts shown below, shows the design concept the application. 
+   It shows what is the flow of the application depending user input.
+
+
+  ![Program Flow Chart](images/flowchart.drawio.png)
 
  - ## **STEPS**
 
@@ -63,7 +68,6 @@
    - ## **Step 4**
    At step 4 the user can provide with a number N. this number will shown you the Nth the best players (or the least best players) regarding the option that has already selected at the previous step.
    So, the user at this step can choose how many NBA players wants to check between 1-200.
-   screenshot
    ![step4](images/step-4-screenshot.png)
 
    - ## **Step 5**
