@@ -43,7 +43,6 @@ def get_stat_columns_to_be_removed(full_data):
     """
     headers = full_data[0]
     stat_options['Player'] = 'Player'
-    stat_options['Pos'] = 'Pos'
     desired_stats = stat_options.values()
 
     column_positions_to_be_removed = [
