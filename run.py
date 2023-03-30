@@ -40,7 +40,7 @@ def get_player_stat_option():
     """
     This is the function with the players stats options
     """
-    print('What do you want to know about? Please, choose an option 1-8')
+    print('What do you want to know about? Please, choose an option 0-7')
     print('1) Points\n')
     print('2) Steals\n')
     print('3) Blocks\n')
@@ -48,9 +48,36 @@ def get_player_stat_option():
     print('5) FT%\n')
     print('6) 2PT%\n')
     print('7) 3PT%\n')
-    print('8) Quit\n')
-    data_option = input('Please, enter your option (a number 1-8): ')
+    print('0) Quit\n')
+    data_option = input('Please, enter your option (a number 0-7): ')
     return data_option
+
+# def get_top_bottom_players_option():
+#     """
+#     This is the function with the players stats options
+#     """
+#     print('What do you want to know about? Please, choose an option 1-8')
+#     print('1) Points\n')
+#     print('2) Steals\n')
+#     print('3) Quit\n')
+#     data_option = input('Please, enter your option (a number 1-3): ')
+#     return data_option
+
+# def validate_top_bottom_option(top_bottom_option):
+#     """
+#     xf
+#     """
+#     try:
+#         player_int_option = int(option)
+#         if (player_int_option < 1 or player_int_option > 8):
+#             raise ValueError()
+#         if player_int_option == 8:
+#             print("Thank you for using our program! Bye!!")
+#             exit()
+#     except ValueError:
+#         return False
+
+#     return True    
 
 
 def validate_username(username):
@@ -68,15 +95,15 @@ def validate_username(username):
 
 def validate_player_stat_option(option):
     """
-    Validate player_stat to be an integer number between 1-8
+    Validate player_stat to be an integer number between 0-7
     Raises ValueError if not integer or if not in this range.
     Also prints the error.
     """
     try:
         player_int_option = int(option)
-        if (player_int_option < 1 or player_int_option > 8):
+        if (player_int_option < 0 or player_int_option > 7):
             raise ValueError()
-        if player_int_option == 8:
+        if player_int_option == 0:
             print("Thank you for using our program! Bye!!")
             exit()
     except ValueError:
