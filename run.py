@@ -22,7 +22,7 @@ player_total_stats = SHEET.worksheet("Player_Totals")
 
 
 def clear_screen():
-    """ 
+    """
     Clear screen
     """
     os.system('clear')
@@ -117,6 +117,41 @@ def validate_top_bottom_option(option_string):
         return False
 
     return True
+
+
+def get_number_of_players(stat):
+    """
+    This is the function that will get number of players from user
+    """
+    print(
+        'Please provide a number N. ' +
+        'This number will show the Nth best/least best players ' +
+        f'regarding {stat}.\n'
+    )
+
+    data_option = input('Please, enter a positive integer number ' +
+                        'up to 200 or press 0 to Quit: ')
+    return data_option
+
+
+def validate_number_of_players(option_string):
+    """
+     Validate number_of_players to be an integer number between 0-200
+     Raises ValueError if not integer or if not in this range.
+     Also prints the error.
+    """
+    try:
+        top_bottom_option = int(option_string)
+        if (top_bottom_option < 0 or top_bottom_option > 200):
+            raise ValueError()
+        if top_bottom_option == 0:
+            print("Thank you for using our program! Bye!!")
+            exit()
+    except ValueError:
+        return False
+
+    return True
+
 
 
 def print_introduction():
