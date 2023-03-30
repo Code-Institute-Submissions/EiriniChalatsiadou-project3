@@ -1,10 +1,10 @@
 from operator import itemgetter
-import os
 import gspread
 from numpy import delete
 from google.oauth2.service_account import Credentials
 import pandas as pd
 from tabulate import tabulate
+from user_input import get_number_of_players, get_player_stat_option, get_top_bottom_players_option, get_user_name
 
 # Here is the scope
 SCOPE = [
@@ -20,137 +20,8 @@ SHEET = GSPREAD_CLIENT.open("nba_stats_2022")
 
 player_total_stats = SHEET.worksheet("Player_Totals")
 
-
-def clear_screen():
-    """
-    Clear screen
-    """
-    os.system('clear')
-
-
-def get_user_name():
-    """
-    This is the function that gets the name from the user
-    """
-    name_str = input("Please enter your name: ")
-    return name_str
-
-
-def validate_username(username):
-    """
-    If the username is empty raise ValueError
-    """
-    try:
-        if username == "":
-            raise ValueError()
-    except ValueError:
-        return False
-
-    return True
-
-
-def get_player_stat_option():
-    """
-    This is the function with the players stats options
-    """
-    print('What do you want to know about? Please, choose an option 0-7')
-    print('1) Points\n')
-    print('2) Steals\n')
-    print('3) Blocks\n')
-    print('4) Rebounds\n')
-    print('5) FT%\n')
-    print('6) 2PT%\n')
-    print('7) 3PT%\n')
-    print('0) Quit\n')
-    data_option = input('Please, enter your option (a number 0-7): ')
-    return data_option
-
-
-def validate_player_stat_option(option):
-    """
-    Validate player_stat to be an integer number between 0-7
-    Raises ValueError if not integer or if not in this range.
-    Also prints the error.
-    """
-    try:
-        player_int_option = int(option)
-        if (player_int_option < 0 or player_int_option > 7):
-            raise ValueError()
-        if player_int_option == 0:
-            print("Thank you for using our program! Bye!!")
-            exit()
-    except ValueError:
-        return False
-
-    return True
-
-
-def get_top_bottom_players_option(stat):
-    """
-    This is the function that you can choose between top or bottom players
-    """
-    print(
-        f'Regarding {stat}, do you want players from top or bottom?' +
-        "Please, choose an option 0-2"
-    )
-    print('1) Top (best players)\n')
-    print('2) Bottom (least best players)\n')
-    print('0) Quit\n')
-    data_option = input('Please, enter your option (a number 0-2): ')
-    return data_option
-
-
-def validate_top_bottom_option(option_string):
-    """
-     Validate top_bottom_option to be an integer number between 0-2
-     Raises ValueError if not integer or if not in this range.
-     Also prints the error.
-    """
-    try:
-        top_bottom_option = int(option_string)
-        if (top_bottom_option < 0 or top_bottom_option > 2):
-            raise ValueError()
-        if top_bottom_option == 0:
-            print("Thank you for using our program! Bye!!")
-            exit()
-    except ValueError:
-        return False
-
-    return True
-
-
-def get_number_of_players(stat):
-    """
-    This is the function that will get number of players from user
-    """
-    print(
-        'Please provide a number N. ' +
-        'This number will show the Nth best/least best players ' +
-        f'regarding {stat}.\n'
-    )
-
-    data_option = input('Please, enter a positive integer number ' +
-                        'up to 200 or press 0 to Quit: ')
-    return data_option
-
-
-def validate_number_of_players(option_string):
-    """
-     Validate number_of_players to be an integer number between 0-200
-     Raises ValueError if not integer or if not in this range.
-     Also prints the error.
-    """
-    try:
-        top_bottom_option = int(option_string)
-        if (top_bottom_option < 0 or top_bottom_option > 200):
-            raise ValueError()
-        if top_bottom_option == 0:
-            print("Thank you for using our program! Bye!!")
-            exit()
-    except ValueError:
-        return False
-
-    return True
+stat_options = {"1": "PTS", "2": "STL", "3": "BLK",
+                "4": "TRB", "5": "FT%", "6": "2P%", "7": "3P%"}
 
 
 def print_introduction():
@@ -161,14 +32,14 @@ def print_introduction():
     print('Do you like NBA? Explore the stats for season 2021-22\n')
 
 
-def get_stat_columns_to_be_removed(full_data, stat_options):
+def get_stat_columns_to_be_removed(full_data):
     """
     From all the data, return the indexes of the columns that we want to
     remove-column names not in stat options plus Player and Pos columns
     """
     headers = full_data[0]
     stat_options['Player'] = 'Player'
-    stat_options['Pos'] = 'Pos'
+    # stat_options['Pos'] = 'Pos'
     desired_stats = stat_options.values()
 
     column_positions_to_be_removed = [
@@ -177,10 +48,12 @@ def get_stat_columns_to_be_removed(full_data, stat_options):
     return column_positions_to_be_removed
 
 
-def remove_unused_columns(full_data, column_indexes_to_be_removed):
+def remove_unused_columns(full_data):
     """
     Removes from full stat data columns that we dont really need.
     """
+
+    column_indexes_to_be_removed = get_stat_columns_to_be_removed(full_data)
     for ind, row in enumerate(full_data):
         full_data[ind] = delete(row, column_indexes_to_be_removed).tolist()
 
@@ -189,8 +62,7 @@ def remove_unused_columns(full_data, column_indexes_to_be_removed):
 
 def calculate_data_stat_column_number(
         filtered_data,
-        stat_option_number,
-        stat_options):
+        stat_option_number):
     """
     Take data headers and find the column number of given 
     option based on option number.
@@ -238,7 +110,6 @@ def convert_string_to_float_or_integer(str):
     except ValueError:
         if str == "":
             return 0.0
-        pass
 
     return str
 
@@ -263,61 +134,27 @@ def pretty_print(list):
     Formats and prints a list in rows / columns.
     """
     df = pd.DataFrame(list)
-    print(tabulate(df, headers='keys', tablefmt='psql'))
+    print(tabulate(df, headers='firstrow', tablefmt='psql'))
 
 
-stat_options = {1: "PTS", 2: "STL", 3: "BLK",
-                4: "TRB", 5: "FT%", 6: "2P%", 7: "3P%"}
-
-# print_introduction()
-# while True:
-#     username = get_user_name()
-#     if validate_username(username):
-#         clear_screen()
-#         print(f"Wow! This is a great name! Welcome {username.upper()}!!!!!\n")
-#         break
-#     else:
-#         clear_screen()
-#         print("Invalid data. Please input a valid name\n")
-
-
-# while True:
-#     player_stat = get_player_stat_option()
-#     if validate_player_stat_option(player_stat):
-#         break
-#     else:
-#         clear_screen()
-#         print("Invalid data. Please input a correct option integer [1-8]\n")
-
-player_stat = 4
-stat_str = stat_options[player_stat]
-
-
-while True:
+def main():
+    print_introduction()
+    get_user_name()
+    player_stat = get_player_stat_option()
+    stat_str = stat_options[player_stat]
     top_bottom_option = get_top_bottom_players_option(stat_str)
-    if validate_top_bottom_option(top_bottom_option):
-        break
-    else:
-        clear_screen()
-        print("Invalid data. Please input a correct option integer [0-2]\n")
-
-while True:
     player_number_option = get_number_of_players(stat_str)
-    if validate_number_of_players(player_number_option):
-        break
-    else:
-        clear_screen()
-        print("Invalid data. Please input a correct option integer [0-200]\n")
+
+    data = player_total_stats.get_all_values()
+    filtered_data = remove_unused_columns(data)
+    filtered_data = convert_list_data_from_string_to_numbers(filtered_data)
+    n = calculate_data_stat_column_number(filtered_data, player_stat)
+
+    from_top = top_bottom_option == "1"
+    r = sort_list_by_stat_option(
+        filtered_data, n, from_top, int(player_number_option))
+    print(n, filtered_data[0])
+    pretty_print(r)
 
 
-data = player_total_stats.get_all_values()
-
-unused_columns = get_stat_columns_to_be_removed(data, stat_options)
-filtered_data = remove_unused_columns(data, unused_columns)
-filtered_data = convert_list_data_from_string_to_numbers(filtered_data)
-n = calculate_data_stat_column_number(filtered_data, player_stat, stat_options)
-
-from_top = top_bottom_option == "1"
-r = sort_list_by_stat_option(filtered_data, n, from_top, int(player_number_option))
-print(n, filtered_data[0])
-pretty_print(r)
+main()
