@@ -36,6 +36,19 @@ def get_user_name():
     return name_str
 
 
+def validate_username(username):
+    """
+    If the username is empty raise ValueError
+    """
+    try:
+        if username == "":
+            raise ValueError()
+    except ValueError:
+        return False
+
+    return True
+
+
 def get_player_stat_option():
     """
     This is the function with the players stats options
@@ -53,11 +66,31 @@ def get_player_stat_option():
     return data_option
 
 
+def validate_player_stat_option(option):
+    """
+    Validate player_stat to be an integer number between 0-7
+    Raises ValueError if not integer or if not in this range.
+    Also prints the error.
+    """
+    try:
+        player_int_option = int(option)
+        if (player_int_option < 0 or player_int_option > 7):
+            raise ValueError()
+        if player_int_option == 0:
+            print("Thank you for using our program! Bye!!")
+            exit()
+    except ValueError:
+        return False
+
+    return True
+
+
 def get_top_bottom_players_option(stat):
     """
     This is the function with the choose, top or bottom players
     """
-    print(f'Regarding {stat}, do you want to select players from top or bottom? Please, choose an option 0-2 ')
+    print(
+        f'Regarding {stat}, do you want to select players from top or bottom? Please, choose an option 0-2 ')
     print('1) Top (best players)\n')
     print('2) Bottom (least best players)\n')
     print('0) Quit\n')
@@ -76,38 +109,6 @@ def validate_top_bottom_option(option_string):
         if (top_bottom_option < 0 or top_bottom_option > 2):
             raise ValueError()
         if top_bottom_option == 0:
-            print("Thank you for using our program! Bye!!")
-            exit()
-    except ValueError:
-        return False
-
-    return True    
-
-
-def validate_username(username):
-    """
-    If the username is empty raise ValueError
-    """
-    try:
-        if username == "":
-            raise ValueError()
-    except ValueError:
-        return False
-
-    return True
-
-
-def validate_player_stat_option(option):
-    """
-    Validate player_stat to be an integer number between 0-7
-    Raises ValueError if not integer or if not in this range.
-    Also prints the error.
-    """
-    try:
-        player_int_option = int(option)
-        if (player_int_option < 0 or player_int_option > 7):
-            raise ValueError()
-        if player_int_option == 0:
             print("Thank you for using our program! Bye!!")
             exit()
     except ValueError:
@@ -255,7 +256,8 @@ stat_options = {1: "PTS", 2: "STL", 3: "BLK",
 player_stat = 4
 
 while True:
-    top_bottom_option = get_top_bottom_players_option(stat_options[player_stat])
+    top_bottom_option = get_top_bottom_players_option(
+        stat_options[player_stat])
     if validate_top_bottom_option(top_bottom_option):
         break
     else:
