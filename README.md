@@ -27,7 +27,12 @@
  - ### **DATA**
    I used the data for my program from [NBA_2021-22_totals](https://www.basketball-reference.com/leagues/NBA_2022_totals.html)
    Also you can take a look to the screenshot below.
+   SCREENSHOT
 
+ - ### **FILES**
+   I used two files for my code because it was too long:
+   - run.py
+   - user_input.py (This file has all the code for the user)
 
 
  - ### **FLOWCHART**
