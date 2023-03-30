@@ -22,10 +22,15 @@
     - Fast mathematical operations over arrays
     - Linear Algebra, Fourier Transforms, Random Number Generation
 
+ - ### **FLOWCHART**
+
  - ### **TESTING**
     - Python Linter Test
- As advised by tutors, I validated Code Institute Python linter. Test result: No errors found. Check in screenshot below.
-
+ As advised by tutors, I validated Code Institute Python linter.
+ No errors were found when passing through the official (Python Linter Test) validator
+  
+ - ### **UNFIXIDED BUGS**
+    - No bugs
  - ### **DEPLOYMENT**
     - On the Heroku dashboard, select "New" and click "Create new app"
     - Create a unique app name
@@ -48,6 +53,10 @@
     - In manual deploy, select which branch to deploy and click "Deploy Branch"
     - Heroku will start building the app
     - The link to the app can be found at the top of the page by clicking "Open app"
+    - The link can be found here
+
+    - ### **CREDITS**
+     - 
 
  - ### **ACKNOWLEDGEMENTS**
-     I'd like to thank my mentor, Akshat Garg, for providing advices and feedback for this project.
+     I'd like to thank my mentor, Akshat Garg, for providing advices and feedback for this project. Also the tutors and the students for the comments to Slack.
