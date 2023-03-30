@@ -90,7 +90,9 @@ def get_top_bottom_players_option(stat):
     This is the function with the choose, top or bottom players
     """
     print(
-        f'Regarding {stat}, do you want to select players from top or bottom? Please, choose an option 0-2 ')
+        f'Regarding {stat}, do you want players from top or bottom?' +
+        "Please, choose an option 0-2"
+    )
     print('1) Top (best players)\n')
     print('2) Bottom (least best players)\n')
     print('0) Quit\n')
