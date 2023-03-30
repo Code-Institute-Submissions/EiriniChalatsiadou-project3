@@ -25,3 +25,29 @@
  - ### **TESTING**
     - Python Linter Test
  As advised by tutors, I validated Code Institute Python linter. Test result: No errors found. Check in screenshot below.
+
+ - ### **DEPLOYMENT**
+    - On the Heroku dashboard, select "New" and click "Create new app"
+    - Create a unique app name
+    - Select your region
+    - Click "Create app"
+    - Go to the settings tab:
+    - Scroll down to the config vars section and select "Reveal Config Vars"
+    - Add necessary config vars
+    - In this case, in the key field enter "PORT" and the value field enter "8000"
+    - Click "Add"
+    - Scroll down to Buildpacks and click "Add buildpack"
+    - Add the necessary buildpacks.
+    - In this case, select "python" and click "Save changes"
+    - Then, select "node.js" and click "Save changes"
+    - Go to the Deploy tab:
+    - Select GitHub and confirm connection to GitHub account
+    - Search for the repository and click "Connect"
+    - Scroll down to the deploy options
+    - Select automatic deploys if you would like automatic deployment with each new push to the GitHub repository
+    - In manual deploy, select which branch to deploy and click "Deploy Branch"
+    - Heroku will start building the app
+    - The link to the app can be found at the top of the page by clicking "Open app"
+
+ - ### **ACKNOWLEDGEMENTS**
+     I'd like to thank my mentor, Akshat Garg, for providing advices and feedback for this project.
