@@ -3,8 +3,6 @@ from operator import itemgetter
 import gspread
 from numpy import delete
 from google.oauth2.service_account import Credentials
-import pandas as pd
-from tabulate import tabulate
 from prettytable import PrettyTable
 from user_input import get_number_of_players, get_player_stat_option, \
     get_top_bottom_players_option, get_user_name, get_user_wants_to_continue, \
