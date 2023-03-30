@@ -18,18 +18,50 @@
   - GitHub - To create my repositories, save and store my project files.
   - gspread is a Python API for Google Sheets and requires Python 3+. It allows user to open, read, write, share spreadsheets. Additionally it enables user to select, create, delete worksheets and to format cell ranges.
   - google auth.- This library provides the ability to authenticate to Google APIs using various methods. It also provides integration with several HTTP libraries.
-  - pretty table -p print the table in a pretty way.
   - pprint — Data pretty printer — Python 2.7, 3.5 onwards. The pprint module provides “pretty-print” to Python data structures. The formatted representation arranges objects on a single line if it can, and breaks them onto multiple lines if they don’t fit within the allowed width. I used it in order to visualize the lists in more user friendly style.
-   Provides
   - numPy provides:
     -  An array object of arbitrary homogeneous items
     - Fast mathematical operations over arrays
     - Linear Algebra, Fourier Transforms, Random Number Generation 
      
  - ### **DATA**
+   I used the data for my program from [NBA_2021-22_totals](https://www.basketball-reference.com/leagues/NBA_2022_totals.html)
+   Also you can take a look to the screenshot below.
+
 
 
  - ### **FLOWCHART**
+
+ - ## **STEPS**
+
+   - ## **Step 1**
+   At the step1 the user has a welcome message and a nice comment.
+   Also a username required. The user can put a valid name to continue. If not the user can see a comment Invalid data. Please put a valid name.
+   2 screenshots
+   - ## **Step 2**
+   At the second step the user can see another nice comment for the username. Above from that the user can see the option that has.
+   The option are 1-7 (points, steals, blocks, rebounds, 2PT%, 3PT%, FT%) also it has an option with number 0 to Quit.
+   screenshot
+   - ## **Step 3**
+   At this step the user has already choose what option wants to check.
+   Also at the same step the user has an option which NBA players prefer to see the stats TOP (best players) or the BOTTOM (least best players) with the option 1 and 2.
+   screenshot
+   - ## **Step 4**
+   At step 4 the user can provide with a number N. this number will shown you the Nth the best players (or the least best players) regarding the option that has already selected at the previous step.
+   So, the user at this step can choose how many NBA players wants to check between 1-200.
+   screenshot
+   - ## **Step 5**
+   At this step the user finally can see the results that asked.
+   Also the column with the stats that asked to check it will be green so can see immediately the option wanted.
+   2 screenshots
+   - ## **Step 6**
+   At the finally step the user has another option with a comment  as "DO you want to know more?" y/n.
+   If no the user receiving a nice comment to stop as "Thank you for using our programme! Bye!!".
+   2 screenshots
+
+
+   
+
 
  - ### **TESTING**
     - Python Linter Test
