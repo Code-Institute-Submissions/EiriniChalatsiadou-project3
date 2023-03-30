@@ -87,7 +87,7 @@ def validate_player_stat_option(option):
 
 def get_top_bottom_players_option(stat):
     """
-    This is the function with the choose, top or bottom players
+    This is the function that you can choose between top or bottom players
     """
     print(
         f'Regarding {stat}, do you want players from top or bottom?' +
@@ -153,7 +153,6 @@ def validate_number_of_players(option_string):
     return True
 
 
-
 def print_introduction():
     """
     Prints the program introduction.
@@ -164,8 +163,8 @@ def print_introduction():
 
 def get_stat_columns_to_be_removed(full_data, stat_options):
     """
-    From all the data, return the indexes of the columns that we want to 
-    remove - column names not in stat options plus Player and Pos columns
+    From all the data, return the indexes of the columns that we want to
+    remove-column names not in stat options plus Player and Pos columns
     """
     headers = full_data[0]
     stat_options['Player'] = 'Player'
@@ -291,15 +290,24 @@ stat_options = {1: "PTS", 2: "STL", 3: "BLK",
 #         print("Invalid data. Please input a correct option integer [1-8]\n")
 
 player_stat = 4
+stat_str = stat_options[player_stat]
+
 
 while True:
-    top_bottom_option = get_top_bottom_players_option(
-        stat_options[player_stat])
+    top_bottom_option = get_top_bottom_players_option(stat_str)
     if validate_top_bottom_option(top_bottom_option):
         break
     else:
         clear_screen()
         print("Invalid data. Please input a correct option integer [0-2]\n")
+
+while True:
+    player_number_option = get_number_of_players(stat_str)
+    if validate_number_of_players(player_number_option):
+        break
+    else:
+        clear_screen()
+        print("Invalid data. Please input a correct option integer [0-200]\n")
 
 
 data = player_total_stats.get_all_values()
@@ -310,6 +318,6 @@ filtered_data = convert_list_data_from_string_to_numbers(filtered_data)
 n = calculate_data_stat_column_number(filtered_data, player_stat, stat_options)
 
 from_top = top_bottom_option == "1"
-r = sort_list_by_stat_option(filtered_data, n, from_top, 10)
+r = sort_list_by_stat_option(filtered_data, n, from_top, int(player_number_option))
 print(n, filtered_data[0])
 pretty_print(r)
