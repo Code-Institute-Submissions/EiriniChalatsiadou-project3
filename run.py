@@ -34,7 +34,7 @@ def print_introduction():
     """
     my_art = from_image('images/nba.png')
     my_art.to_terminal(columns=80, width_ratio=4)
-    print('Welcome!\n')
+    print('Welcome!')
     print('Do you like NBA? Explore the stats for season 2021-22\n')
 
 
