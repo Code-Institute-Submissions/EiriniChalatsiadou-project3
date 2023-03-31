@@ -5,9 +5,10 @@ from numpy import delete
 from google.oauth2.service_account import Credentials
 from prettytable import PrettyTable
 from colorama import Fore, Style
+from ascii_magic import from_image
 from user_input import get_number_of_players, get_player_stat_option, \
     get_top_bottom_players_option, get_user_name, get_user_wants_to_continue, \
-    clear_screen
+    clear_screen    
 
 # Here is the scope
 SCOPE = [
@@ -31,6 +32,8 @@ def print_introduction():
     """
     Prints the program introduction.
     """
+    my_art = from_image('images/nba.png')
+    my_art.to_terminal(columns=80)
     print('Welcome!\n')
     print('Do you like NBA? Explore the stats for season 2021-22\n')
 
