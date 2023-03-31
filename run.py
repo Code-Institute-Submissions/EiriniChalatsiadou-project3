@@ -8,7 +8,7 @@ from colorama import Fore, Style
 from ascii_magic import from_image
 from user_input import get_number_of_players, get_player_stat_option, \
     get_top_bottom_players_option, get_user_name, get_user_wants_to_continue, \
-    clear_screen    
+    clear_screen
 
 # Here is the scope
 SCOPE = [
@@ -136,13 +136,13 @@ def convert_list_data_from_string_to_numbers(data_list):
 
 def pretty_print(list, colour_column_number):
     """
-    Formats and prints a list in rows / columns. 
+    Formats and prints a list in rows / columns.
     Accepts column number to be coloured
     """
 
     pretty_table = PrettyTable()
     for ind, row in enumerate(list):
-        number_str = str(row[colour_column_number]) 
+        number_str = str(row[colour_column_number])
         colored = Fore.GREEN + \
             number_str + Style.RESET_ALL
         list[ind][colour_column_number] = colored

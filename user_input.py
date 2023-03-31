@@ -178,7 +178,7 @@ def get_number_of_players(stat, from_top):
 
 def get_user_wants_to_continue():
     """
-    this function asks the user if he wants to continue and ask more info. 
+    this function asks the user if he wants to continue and ask more info.
     """
     while True:
         user_input = input('Do you want to know more? [y/n]: ')
