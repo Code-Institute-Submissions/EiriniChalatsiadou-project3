@@ -114,7 +114,7 @@
     - In manual deploy, select which branch to deploy and click "Deploy Branch"
     - Heroku will start building the app
     - The link to the app can be found at the top of the page by clicking "Open app"
-    - The link can be found here
+    - The link can be found [here](https://nba-stats-2021-2022.herokuapp.com/)
 
  - ### **CREDITS**
      - [stackoverflow](https://stackoverflow.com/)
