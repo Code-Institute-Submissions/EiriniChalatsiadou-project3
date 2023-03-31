@@ -40,7 +40,7 @@
    - user_input.py (This file has all the code for the user)
 
 
- - ### **FLOWCHART**
+ - ### **FLOW CHART**
    The flow chart was created using https://app.diagrams.net, a web-based diagramming application. The flow charts shown below, shows the design concept the application. 
    It shows what is the flow of the application depending user input.
 
@@ -71,9 +71,10 @@
    ![step4](images/step-4-screenshot.png)
 
    - ## **Step 5**
-   At this step the user finally can see the results that asked.
+   At this step the user finally can see the results that asked. 
    Also the column with the stats that asked to check it will be green so can see immediately the option wanted.
    ![step5](images/step-5-screenshot.png)
+
    
    - ## **Step 6**
    At the finally step the user has another option with a comment  as "DO you want to know more?" y/n.
@@ -109,7 +110,7 @@
     - Select GitHub and confirm connection to GitHub account
     - Search for the repository and click "Connect"
     - Scroll down to the deploy options
-    - Select automatic deploys if you would like automatic deployment with each new push to the GitHub repository
+    - Select automatic deploys if you would like automatic deployment with each new push to the GitHub    repository
     - In manual deploy, select which branch to deploy and click "Deploy Branch"
     - Heroku will start building the app
     - The link to the app can be found at the top of the page by clicking "Open app"
@@ -119,6 +120,8 @@
      - [stackoverflow](https://stackoverflow.com/)
      - [w3schools](https://www.w3schools.com/)
      - geeksforgeeks
+     - [colorama](https://pypi.org/project/colorama/)
+     - [diagram](https://app.diagrams.net/)
 
  - ### **ACKNOWLEDGEMENTS**
      I'd like to thank my mentor, Akshat Garg, for providing advices and feedback for this project. Also the tutors and the students for the comments to Slack.
