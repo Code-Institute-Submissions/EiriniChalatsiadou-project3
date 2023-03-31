@@ -32,7 +32,7 @@
  - ### **DATA**
    I used the data for my program from [NBA_2021-22_totals](https://www.basketball-reference.com/leagues/NBA_2022_totals.html)
    Also you can take a look to the screenshot below.
-   SCREENSHOT
+   ![sheet](images/data-sheet-screenshot.png)
 
  - ### **FILES**
    I used two files for my code because it was too long:
@@ -116,7 +116,7 @@
     - The link to the app can be found at the top of the page by clicking "Open app"
     - The link can be found here
 
-    - ### **CREDITS**
+ - ### **CREDITS**
      - [stackoverflow](https://stackoverflow.com/)
      - [w3schools](https://www.w3schools.com/)
      - geeksforgeeks
