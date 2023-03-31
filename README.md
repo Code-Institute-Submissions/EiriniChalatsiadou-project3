@@ -28,6 +28,8 @@
     - Fast mathematical operations over arrays
     - Linear Algebra, Fourier Transforms, Random Number Generation 
     - OS : for the clear terminal function.
+    - Colorama: used to produce colored terminal text and cursor positioning on Unix and Macs.
+    - ascii-magic 2.3.0: used to add an image to the terminal
      
  - ### **DATA**
    I used the data for my program from [NBA_2021-22_totals](https://www.basketball-reference.com/leagues/NBA_2022_totals.html)
@@ -120,7 +122,6 @@
      - [stackoverflow](https://stackoverflow.com/)
      - [w3schools](https://www.w3schools.com/)
      - geeksforgeeks
-     - [colorama](https://pypi.org/project/colorama/)
      - [diagram](https://app.diagrams.net/)
 
  - ### **ACKNOWLEDGEMENTS**
