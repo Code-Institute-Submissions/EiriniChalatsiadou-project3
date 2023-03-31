@@ -4,6 +4,7 @@
 - ### **DESCRIPTION**
   This is a program that uses statistical data about all the active NBA players from season 2021-2022, filters them out and the user can choose to show a number of players sorted (1-200) by stats like, points, steals, blocks, rebounds, 2PT%, 3PT%, FT%. Additional the user can see and the position of the player beside the name.
   Also the user have the choice to quit the program.
+  ![image](images/description-image-screenshot.png)
 
 - ### **TECHNOLOGIES**
   - [Git](https://git-scm.com/) for version control.
@@ -84,13 +85,12 @@
    ![step6](images/step-6-screenshot.png)
 
 
-   
-
-
- - ### **TESTING**
+    - ### **TESTING**
     - Python Linter Test
  As advised by tutors, I validated Code Institute Python linter.
- No errors were found when passing through the official (Python Linter Test) validator
+ No errors were found when passing through the official (Python Linter Test) validator for both files(run.py and user_input.py)
+   ![validator](images/validator-screenshot.png)
+   ![validator](images/validator-2-screenshot.png)
   
  - ### **UNFIXIDED BUGS**
     - No bugs
